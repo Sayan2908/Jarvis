@@ -60,7 +60,7 @@ const TextToSpeech = () => {
           className="bg-transparent w-[510px] border border-[#b00c3f]/80 outline-none  rounded-lg placeholder:text-[#b00c3f] p-2 text-[#b00c3f] font-bold"
           type="text"
           name="text"
-          placeholder="Kya janna chahta hai bsdk"
+          placeholder="What do you want to know!!!"
         />
         <button
             disabled = {isLoading}
