@@ -41,7 +41,7 @@ const TextToSpeech = () => {
         if (err instanceof Error) problem = err.message;
 
         console.log(problem);
-        speak("I am sorry but could you please buy me a good plan to use gpt 3.5 otherwise get the fuck out");
+        speak("I am sorry but could you please buy me a good plan to use gpt 3.5 ");
       }
       finally{
           setIsLoading(false);
