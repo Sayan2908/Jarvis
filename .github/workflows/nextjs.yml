@@ -33,11 +33,8 @@ jobs:
         run: |
           if [ -f "yarn.lock" ]; then
             yarn install
-          elif [ -f "package-lock.json" ]; then
-            npm ci
           else
-            echo "No lock file found. Please check if yarn.lock or package-lock.json exists."
-            exit 1
+            npm ci
           fi
 
       - name: Build with Next.js
