@@ -40,15 +40,12 @@ jobs:
 
       - name: Build with Next.js
         working-directory: jarvis
-        run: |
-          cd jarvis
-          npx next build
+        run: npx next build
 
       - name: Static HTML export with Next.js
         working-directory: jarvis
-        run: |
-          cd jarvis
-          npx next export
+        run: npx next export
+          
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
