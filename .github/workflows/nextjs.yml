@@ -40,11 +40,11 @@ jobs:
 
       - name: Build with Next.js
         working-directory: jarvis
-        run: npx next build
+        run: npm next build
 
       - name: Static HTML export with Next.js
         working-directory: jarvis
-        run: npx next export
+        run: npm next export
           
 
       - name: Upload artifact
