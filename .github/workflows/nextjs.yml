@@ -36,7 +36,7 @@ jobs:
           elif [ -f "package-lock.json" ]; then
             npm ci
           else
-            echo "Unable to determine package manager"
+            echo "No lock file found. Please check if yarn.lock or package-lock.json exists."
             exit 1
           fi
 
