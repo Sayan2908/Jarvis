@@ -42,13 +42,13 @@ jobs:
         working-directory: jarvis
         run: |
           cd jarvis
-          npm next build
+          npx next build
 
       - name: Static HTML export with Next.js
         working-directory: jarvis
         run: |
           cd jarvis
-          npm next export
+          npx next export
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
