@@ -23,41 +23,30 @@ jobs:
         with:
           path: jarvis
 
-      - name: Detect package manager
-        id: detect-package-manager
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+
+      - name: Install dependencies
+        working-directory: jarvis
         run: |
-          if [ -f "jarvis/yarn.lock" ]; then
-            echo "manager=yarn" >> $GITHUB_OUTPUT
-            echo "command=install" >> $GITHUB_OUTPUT
-            echo "runner=yarn" >> $GITHUB_OUTPUT
-          elif [ -f "jarvis/package-lock.json" ]; then
-            echo "manager=npm" >> $GITHUB_OUTPUT
-            echo "command=ci" >> $GITHUB_OUTPUT
-            echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+          if [ -f "yarn.lock" ]; then
+            yarn install
+          elif [ -f "package-lock.json" ]; then
+            npm ci
           else
             echo "Unable to determine package manager"
             exit 1
           fi
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "14"
-
-      - name: Install dependencies
-        run: |
-          cd jarvis
-          ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-
       - name: Build with Next.js
-        run: |
-          cd jarvis
-          ${{ steps.detect-package-manager.outputs.runner }} next build
+        working-directory: jarvis
+        run: yarn next build
 
       - name: Static HTML export with Next.js
-        run: |
-          cd jarvis
-          ${{ steps.detect-package-manager.outputs.runner }} next export
+        working-directory: jarvis
+        run: yarn next export
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
